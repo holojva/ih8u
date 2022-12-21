@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% block content %}
+
+<h2>Ratings</h2>
+
+{% for r in kostya_ispolzyu_norm_imena %}
+    <ul>
+        <li>{{r.name}}</li>
+        <li>{{r.text}}</li>
+        <li>{{r.rate}}</li>
+        <li><a href="rating/{{ r.id }}">link to - {{r.name}}</a></li>
+    </ul>
+    --------------------
+{% endfor %}
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number}}"> next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last&raquo;</a>
+    {% endif %}
+</div>
+{%endblock%}
